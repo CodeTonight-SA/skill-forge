@@ -1,0 +1,20 @@
+# Configuration (user-specific)
+config.json
+
+# Backups
+*.backup
+*.pre-uninstall
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Node (if demo runs tests)
+node_modules/
