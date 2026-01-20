@@ -52,6 +52,11 @@ error() {
     exit 1
 }
 
+# Detect Windows/MSYS/MinGW environment
+is_windows() {
+    [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "mingw"* ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ -n "$WINDIR" ]]
+}
+
 # Check for Claude CLI (optional but recommended)
 check_claude_cli() {
     if command -v claude &> /dev/null; then
@@ -185,12 +190,14 @@ setup_output_style() {
         warn "Backed up existing output style to $style_target.backup"
     fi
 
-    status "Linking output style"
-    ln -s "$style_source" "$style_target" 2>/dev/null || {
-        # Fallback to copy on Windows (symlinks require admin/Developer Mode)
+    if is_windows; then
+        # Windows: use copy directly (MSYS symlinks are unreliable)
+        status "Copying output style (Windows)"
         cp "$style_source" "$style_target"
-        warn "Used copy instead of symlink (Windows compatibility)"
-    }
+    else
+        status "Linking output style"
+        ln -s "$style_source" "$style_target"
+    fi
 }
 
 # Create default config
@@ -245,11 +252,11 @@ verify_installation() {
         ((errors++))
     fi
 
-    # Check output style
-    if [[ -L "$OUTPUT_STYLES_DIR/forging-skills.md" ]]; then
+    # Check output style (symlink on Unix, file on Windows)
+    if [[ -f "$OUTPUT_STYLES_DIR/forging-skills.md" ]] && [[ -r "$OUTPUT_STYLES_DIR/forging-skills.md" ]]; then
         status "Output style: OK"
     else
-        warn "Output style: Not linked"
+        warn "Output style: Missing or unreadable"
         ((errors++))
     fi
 
