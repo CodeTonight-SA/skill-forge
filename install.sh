@@ -186,7 +186,11 @@ setup_output_style() {
     fi
 
     status "Linking output style"
-    ln -s "$style_source" "$style_target"
+    ln -s "$style_source" "$style_target" 2>/dev/null || {
+        # Fallback to copy on Windows (symlinks require admin/Developer Mode)
+        cp "$style_source" "$style_target"
+        warn "Used copy instead of symlink (Windows compatibility)"
+    }
 }
 
 # Create default config
