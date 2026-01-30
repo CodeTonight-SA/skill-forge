@@ -1,16 +1,16 @@
 # Skill Forge
 
-**Anti-skill-atrophy system for senior engineers using Claude Code.**
+**Anti-skill-atrophy system for software engineers using Claude Code.**
 
-The sharpest sword is forged through use, not observation.
+The sharpest sword is forged through use, not blind acceptance. At the very least, it requires keen observation and accountability. Better yet, with practise and participation. 
 
 ## The Problem
 
-Agentic AI is a double-edged sword. The better Claude gets at writing code, the less you write yourself. Over time, senior engineers who rely heavily on AI assistance risk losing the very skills that made them senior in the first place.
+Agentic AI is a double-edged sword. The better Claude gets at writing code, the less you write yourself. Over time, software engineers who rely heavily on AI assistance risk losing the very skills required to build these systems in the first place. Fully accepting all LLM output inevitably leads to skill atrophy, **and**, critically, skill formation itself. For more information, see the recent [paper](https://arxiv.org/abs/2601.20245) about this on Arxiv.org.
 
-**Vibe coding is a trap.**
+**Vibe coding can be a deadly trap.**
 
-Skill Forge addresses this by periodically interrupting your workflow to keep you hands-on with code.
+Skill Forge addresses this by periodically interrupting your workflow to keep you hands-on with code. Suitable for all levels of experience. The AI will gently assist you in the task(s) proposed during so-called "vibe coding" (a pejorative term, and one that has polarised software engineers and leaders around the world. One should heed caution and always remember that LIFE is a VIBE, not code.
 
 ## Quick Install
 
@@ -120,14 +120,6 @@ Clean removal that preserves your other Claude Code configuration.
 ## Philosophy
 
 Read [PHILOSOPHY.md](PHILOSOPHY.md) for the full manifesto on why skill maintenance matters in the age of agentic AI.
-
-## Demo
-
-The `demo/` directory contains an event emitter implementation that was built while testing forge gates. It demonstrates:
-
-- Code review of the `once()` method
-- User write of the `clear()` method
-- Specific feedback on implementation issues
 
 ## Requirements
 
